@@ -15,12 +15,12 @@ ATPSPlayerController::ATPSPlayerController()
 
 void ATPSPlayerController::PlayerTick(float DeltaTime)
 {
-	Super::PlayerTick(DeltaTime);
+Super::PlayerTick(DeltaTime);
 
 	// keep updating the destination every tick while desired
 	if (bMoveToMouseCursor)
 	{
-		MoveToMouseCursor();
+	//MoveToMouseCursor();
 	}
 }
 
@@ -44,31 +44,31 @@ void ATPSPlayerController::OnResetVR()
 	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
 }
 
-void ATPSPlayerController::MoveToMouseCursor()
-{
-	if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
-	{
-		if (ATPSCharacter* MyPawn = Cast<ATPSCharacter>(GetPawn()))
-		{
-			if (MyPawn->GetCursorToWorld())
-			{
-				UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, MyPawn->GetCursorToWorld()->GetComponentLocation());
-			}
-		}
-	}
-	else
-	{
+//void ATPSPlayerController::MoveToMouseCursor()
+//{
+//	if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
+//	{
+//		if (ATPSCharacter* MyPawn = Cast<ATPSCharacter>(GetPawn()))
+//		{
+//			if (MyPawn->GetCursorToWorld())
+//			{
+//				UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, MyPawn->GetCursorToWorld()->GetComponentLocation());
+//			}
+//		}
+//	}
+//	else
+//	{
 		// Trace to see what is under the mouse cursor
-		FHitResult Hit;
-		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+//		FHitResult Hit;
+//		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
 
-		if (Hit.bBlockingHit)
-		{
+//		if (Hit.bBlockingHit)
+//		{
 			// We hit something, move there
-			SetNewMoveDestination(Hit.ImpactPoint);
-		}
-	}
-}
+//			SetNewMoveDestination(Hit.ImpactPoint);
+//		}
+//	}
+//}
 
 void ATPSPlayerController::MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
